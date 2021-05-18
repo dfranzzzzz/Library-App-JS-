@@ -1,0 +1,104 @@
+// Variables
+$main_font: 'Raleway', sans-serif;
+$main_font_clr: #1F3E59;
+$secondary_font_clr: #fff;
+
+$main_bg_clr: lightgray;
+$header_bg_clr: #3c74a5;
+$lib_log_bg_clr: rgba(211, 211, 211, 0.308);
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $main_bg_clr;
+  font-family: $main_font;
+  color: $main_font_clr;
+}
+
+body > * {
+  box-sizing: border-box;
+}
+
+img {
+  width: 50px;
+}
+
+// ===================
+// HEADER
+// ===================
+
+header {
+  padding: 20px;
+  max-width: 100%;
+  background: $header_bg_clr;
+  color: $secondary_font_clr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+
+  img {
+    padding-right: 10px;
+  }
+
+  h1 {
+    margin: 0;
+    letter-spacing: 3px;
+  }
+}
+
+.lib_log {
+  padding: 10px;
+  min-width: 300px;
+
+  display: flex;
+  justify-content: space-between;
+  background: $lib_log_bg_clr;
+  border-radius: 5px;
+
+  h4 {
+    margin-block: 5px;
+    font-size: 1rem;
+  }
+}
+
+.lib_data > *{
+  display: inline-block;
+}
+
+@media (min-width: 700px){
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo {
+    margin: 0;
+  }
+}
+
+// ===================
+// LISTED BOOKS
+// ===================
+
+main {
+  margin: 20px;
+}
+
+.book {
+  margin: 20px;
+  padding: 10px;
+  border: 1px black solid;
+  border-radius: 5px;
+  max-width: 300px;
+
+  h2, h4 {
+    margin-block: 8px;
+  }
+}
