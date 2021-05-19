@@ -11,14 +11,16 @@ const booksUnread   = document.querySelector('#books_unread');
 // Button
 // const btnUnread = document.querySelector(`.book_unread`);
 // const btnDone   = document.querySelector(`.book_done`);
-// const btnDelete = document.querySelector(`.book_delete`);
 
 // Listed Books
 const bookList = document.querySelector(`.listed_books`);
 
+window.onload=function(){
+  const btnDelete = document.querySelectorAll(`.book_delete`);
 
-
-let myLibrary = [];
+  // Event Listeners
+  btnDelete.forEach(button => button.addEventListener(`click`, Book.deleteBook));
+}
 
 class Book {
   constructor (title, author, genre, status) {
@@ -26,6 +28,8 @@ class Book {
     this.author = author;
     this.genre  = genre;
     this.status = status;
+    Book.allBooks.push(this);
+    this.createBook();
   }
 
   getSummary() {
@@ -42,7 +46,7 @@ class Book {
     const bookGenre    = document.createElement(`h4`);
     const indicatorBtn = document.createElement(`button`);
     const deleteBtn    = document.createElement(`button`);
-    
+
     book.className       = `book`;
     bookTitle.className  = `book_title`;
     bookAuthor.className = `book_author`;
@@ -53,8 +57,8 @@ class Book {
 
     bookTitle.innerText    = `${this.title}`
     bookAuthor.innerText   = `${this.author}`
-    bookGenre.innerText    = `${this.genre}`
     indicatorBtn.innerText = `${this.status}`;
+    bookGenre.innerText    = `${this.genre}`
     deleteBtn.innerText    = `DELETE`;
 
     bookList.append(book);
@@ -64,14 +68,21 @@ class Book {
     book.append(indicatorBtn);
     book.append(deleteBtn);
   }
+
+  static deleteBook (e) {
+    const title = `${e.target.parentElement.childNodes[0].innerText}`; 
+    const index = Book.allBooks.findIndex(x => x.title === title);
+    Book.allBooks.splice(index, 1);
+    e.target.parentElement.remove();
+  }
+
+  static allBooks = [];
 }
 
-const book1 = new Book (`Atomic Habits`, `James Clear`, `Self-help`, `DONE`);
-myLibrary.push(book1);
-book1.createBook();
+// Test Samples
+new Book (`Atomic Habits`, `James Clear`, `Self-help`, `DONE`);
+new Book (`Subtle Art of not Giving a F*ck`, `Mark Manson`, `Self-help`, `UNREAD`);
+new Book (`Naruto`, `Mark Manson`, `Self-help`, `UNREAD`);
+new Book (`Eren`, `Mark Manson`, `Self-help`, `DONE`);
 
-
-const book2 = new Book (`Subtle Art of not Giving a F*ck`, `Mark Manson`, `Self-help`, `UNREAD`);
-myLibrary.push(book2);
-book2.createBook();
 
