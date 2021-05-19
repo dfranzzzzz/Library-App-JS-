@@ -17,6 +17,24 @@ img {
   width: 50px;
 }
 
+button {
+  width: 100px;
+  padding: 10px;
+  margin-block: 5px;
+  cursor: pointer;
+  border: 3px #1F3E59 solid;
+  border-radius: 3px;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+
+button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 header {
   padding: 20px;
   max-width: 100%;
@@ -94,14 +112,77 @@ main {
   margin: 20px;
 }
 
-.book {
-  margin: 20px;
-  padding: 10px;
-  border: 1px black solid;
-  border-radius: 5px;
-  max-width: 300px;
+.col_label {
+  max-width: 100%;
+  margin-inline: 50px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 2px #1F3E59 solid;
 }
 
-.book h2, .book h4 {
+.col_label h3 {
+  margin: 0;
+}
+
+.book {
+  margin-inline: 50px;
+  padding: 10px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px #1F3E59 solid;
+}
+
+.book h4 {
   margin-block: 8px;
+  padding-right: 20px;
+}
+
+.book_done {
+  background: #25ccc4;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.book_unread {
+  background: transparent;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.book_delete {
+  background: #e75960;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 700px) {
+  .col_label {
+    display: none;
+  }
+  .book {
+    margin-inline: auto;
+    padding: 10px;
+    width: 350px;
+    display: block;
+    border: 2px #1F3E59 solid;
+    border-radius: 5px;
+  }
+  .book + .book {
+    margin-top: 20px;
+  }
+  .book_title {
+    font-size: 25px;
+  }
 }

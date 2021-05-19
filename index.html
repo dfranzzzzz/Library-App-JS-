@@ -19,20 +19,41 @@
 
     <div class="lib_log">
         <h4 id="books_total">
-          Total Books: <span>0</span>
+          Total Books: <span>2</span>
         </h4>
         <h4 id="books_finished">
-          Finished: <span>0</span>
+          Done: <span>1</span>
         </h4>
         <h4 id="books_unread">
-          Unread: <span>0</span>
+          Unread: <span>1</span>
         </h4>
     </div>
   </header>
 
   <main>
     <section class="listed_books">
+      <div class="col_label">
+        <h3>Title</h3>
+        <h3>Author</h3>
+        <h3>Genre</h3>
+        <h3>Status</h3>
+      </div>
       
+      <div class="book">
+        <h4 class="book_title">Atomic Habits</h4>
+        <h4 class="book_author">James Clear</h4>
+        <h4 class="book_genre">Self-help</h4>
+        <button class="book_done">DONE</button>
+        <button class="book_delete">DELETE</button>
+      </div>
+
+      <div class="book">
+        <h4 class="book_title">Subtle Art of Not Giving a F*ck</h4>
+        <h4 class="book_author">Mark Manson</h4>
+        <h4 class="book_genre">Self-help</h4>
+        <button class="book_unread">UNREAD</button>
+        <button class="book_delete">DELETE</button>
+      </div>
     </section>
   </main>
 </body>

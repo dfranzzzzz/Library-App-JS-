@@ -1,16 +1,25 @@
 // Variables
 $main_font: 'Raleway', sans-serif;
+
 $main_font_clr: #1F3E59;
 $secondary_font_clr: #fff;
+
+$col_border_clr: #1F3E59;
+$book_border_clr: lightseagreen;
 
 $main_bg_clr: lightgray;
 $header_bg_clr: #3c74a5;
 $lib_log_bg_clr: rgba(211, 211, 211, 0.308);
 
+$btn_done_clr: rgb(37, 204, 196);
+$btn_delete_clr: rgb(231, 89, 96);
+$btn_border_clr: #1F3E59;
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
   background-color: $main_bg_clr;
   font-family: $main_font;
   color: $main_font_clr;
@@ -24,6 +33,21 @@ img {
   width: 50px;
 }
 
+button {
+  width: 100px;
+  padding: 10px;
+  margin-block: 5px;
+
+  cursor: pointer;
+  border: 3px $btn_border_clr solid;
+  border-radius: 3px;
+  transition: transform .2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
 // ===================
 // HEADER
 // ===================
@@ -31,15 +55,17 @@ img {
 header {
   padding: 20px;
   max-width: 100%;
+
   background: $header_bg_clr;
   color: $secondary_font_clr;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} 
 
 .logo {
   margin-bottom: 10px;
+
   display: flex;
   align-items: center;
 
@@ -91,14 +117,78 @@ main {
   margin: 20px;
 }
 
-.book {
-  margin: 20px;
-  padding: 10px;
-  border: 1px black solid;
-  border-radius: 5px;
-  max-width: 300px;
+.col_label {
+  max-width: 100%;
+  margin-inline: 50px;
 
-  h2, h4 {
-    margin-block: 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  border-bottom: 2px $col_border_clr solid;
+
+  h3 {
+    margin: 0;
   }
 }
+
+.book {
+  margin-inline: 50px;
+  padding: 10px 0;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  border-bottom: 1px $col_border_clr solid;
+
+  h4 {
+    margin-block: 8px;
+    padding-right: 20px;
+  }
+
+  &_done {
+    background:$btn_done_clr;
+    color: $secondary_font_clr;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  &_unread {
+    background: transparent;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  &_delete {
+    background: $btn_delete_clr;
+    color: $secondary_font_clr;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 700px) {
+  .col_label {
+    display: none;
+  }
+
+  .book {
+    margin-inline: auto;
+    padding: 10px;
+    width: 350px;
+    display: block;
+    border: 2px $col_border_clr solid;
+    border-radius: 5px;
+
+    & + & {
+      margin-top: 20px;
+    }
+
+    &_title {
+      font-size: 25px;
+    }
+  }
+}
+
+// ===================
+// LISTING FORM
+// ===================
