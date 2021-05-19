@@ -36,12 +36,13 @@ img {
 button {
   width: 100px;
   padding: 10px;
-  margin-block: 5px;
+  margin: 5px 5px 5px 0;
 
   cursor: pointer;
   border: 3px $btn_border_clr solid;
   border-radius: 3px;
   transition: transform .2s;
+  color: $main_font_clr;
 }
 
 button:hover {
@@ -147,7 +148,7 @@ main {
 
   &_done {
     background:$btn_done_clr;
-    color: $secondary_font_clr;
+    // color: $secondary_font_clr;
     font-size: 12px;
     letter-spacing: 1px;
   }
@@ -160,7 +161,7 @@ main {
 
   &_delete {
     background: $btn_delete_clr;
-    color: $secondary_font_clr;
+    // color: $secondary_font_clr;
     font-size: 12px;
     letter-spacing: 1px;
   }

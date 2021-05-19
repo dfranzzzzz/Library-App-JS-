@@ -20,7 +20,7 @@ img {
 button {
   width: 100px;
   padding: 10px;
-  margin-block: 5px;
+  margin: 5px 5px 5px 0;
   cursor: pointer;
   border: 3px #1F3E59 solid;
   border-radius: 3px;
@@ -28,6 +28,7 @@ button {
   transition: -webkit-transform .2s;
   transition: transform .2s;
   transition: transform .2s, -webkit-transform .2s;
+  color: #1F3E59;
 }
 
 button:hover {
@@ -149,7 +150,6 @@ main {
 
 .book_done {
   background: #25ccc4;
-  color: #fff;
   font-size: 12px;
   letter-spacing: 1px;
 }
@@ -162,7 +162,6 @@ main {
 
 .book_delete {
   background: #e75960;
-  color: #fff;
   font-size: 12px;
   letter-spacing: 1px;
 }
