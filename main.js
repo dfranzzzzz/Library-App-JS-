@@ -9,31 +9,70 @@ const booksUnread   = document.querySelector('#books_unread');
 // const bookGenre  = document.querySelector(`.book_genre`);
 
 // Button
-// const btnUnread = document.querySelector(`.book_unread`);
-// const btnDone   = document.querySelector(`.book_done`);
-const btnAdd = document.querySelector(`.add_book`);
+const btnAdd    = document.querySelector(`.add_book`);
 
 // Listed Books
 const bookList = document.querySelector(`.listed_books`);
 
 // Form
 const modal = document.querySelector(`.modal`);
+const form = document.querySelector(`.list_form`);
+const form_title = document.querySelector(`#form_title`);
+const form_author = document.querySelector(`#form_author`);
+const form_genre = document.querySelector(`#form_genre`);
+const form_status = document.querySelector(`#form_status`);
 
-window.onload=function(){
-  const btnDelete = document.querySelectorAll(`.book_delete`);
+window.onload = function () {
+  // const btnDone   = document.querySelectorAll(`.book_done`);
+  // const btnUnread = document.querySelectorAll(`.book_unread`);
+  // btnDone.forEach(button => button.addEventListener(`click`, doneToUnread));
+  // btnUnread.forEach(button => button.addEventListener(`click`, unreadToDone));
+
+  
+  
   // Event Listeners
-  btnDelete.forEach(button => button.addEventListener(`click`, Book.deleteBook));
+  btnAdd.addEventListener(`click`, showForm);
+  window.addEventListener(`click`, clickExitForm);
+  bookList.addEventListener(`click`, Book.deleteBook);
 }
 
-window.onclick = function(e) {
-  if (e.target == modal) {
-    modal.style.display = "none";
-  }
+form.addEventListener(`submit`, (e) => {
+  e.preventDefault();
+  new Book(`${form_title.value}`, `${form_author.value}`, `${form_genre.value}`, `${form_status.value}`);
+  resetForm();
+  exitForm();
+});
+
+exitForm = () => {
+  modal.style.display = "none";
 }
 
-btnAdd.onclick = function() {
+clickExitForm = (e) => {
+  if (e.target == modal) exitForm();
+}
+
+showForm = () => {
   modal.style.display = "flex";
 }
+
+resetForm = () => {
+  form.reset();
+}
+
+
+// doneToUnread = (e) => {
+//   e.target.classList.remove(`book_done`);
+//   e.target.classList.add(`book_unread`);
+//   e.target.innerText = `UNREAD`;
+//   alert("asdfas")
+// }
+
+// unreadToDone = (e) => {
+//   e.target.classList.remove(`book_unread`);
+//   e.target.classList.add(`book_done`);
+//   e.target.innerText = `DONE`;
+//   console.log(e);
+// }
 
 class Book {
   constructor (title, author, genre, status) {
@@ -83,10 +122,14 @@ class Book {
   }
 
   static deleteBook (e) {
-    const title = `${e.target.parentElement.childNodes[0].innerText}`; 
-    const index = Book.allBooks.findIndex(x => x.title === title);
-    Book.allBooks.splice(index, 1);
-    e.target.parentElement.remove();
+    // event bubbling
+    if(e.target.className == 'book_delete') {
+      const book = e.target.parentElement;
+      const title = `${e.target.parentElement.childNodes[0].innerText}`; 
+      const index = Book.allBooks.findIndex(x => x.title === title);
+      bookList.removeChild(book);
+      Book.allBooks.splice(index, 1);
+    }
   }
 
   static allBooks = [];
@@ -97,5 +140,3 @@ new Book (`Atomic Habits`, `James Clear`, `Self-help`, `DONE`);
 new Book (`Subtle Art of not Giving a F*ck`, `Mark Manson`, `Self-help`, `UNREAD`);
 new Book (`Naruto`, `Mark Manson`, `Self-help`, `UNREAD`);
 new Book (`Eren`, `Mark Manson`, `Self-help`, `DONE`);
-
-
