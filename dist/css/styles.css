@@ -17,7 +17,7 @@ img {
   width: 50px;
 }
 
-button {
+button, #submit {
   width: 100px;
   padding: 10px;
   margin: 5px 5px 5px 0;
@@ -29,9 +29,11 @@ button {
   transition: transform .2s;
   transition: transform .2s, -webkit-transform .2s;
   color: #1F3E59;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 
-button:hover {
+button:hover, #submit:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -149,21 +151,15 @@ main {
 }
 
 .book_done {
-  background: #25ccc4;
-  font-size: 12px;
-  letter-spacing: 1px;
+  background: #4DCFE0;
 }
 
 .book_unread {
   background: transparent;
-  font-size: 12px;
-  letter-spacing: 1px;
 }
 
 .book_delete {
-  background: #e75960;
-  font-size: 12px;
-  letter-spacing: 1px;
+  background: #ff676f;
 }
 
 @media (max-width: 700px) {
@@ -184,4 +180,108 @@ main {
   .book_title {
     font-size: 25px;
   }
+}
+
+.modal {
+  display: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+form {
+  background: #fff;
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 5px;
+  border: 5px #1F3E59 solid;
+}
+
+legend {
+  text-align: center;
+  color: black;
+  font-size: larger;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 10px;
+}
+
+label {
+  font-weight: 700;
+}
+
+::-webkit-input-placeholder {
+  color: black;
+}
+
+:-ms-input-placeholder {
+  color: black;
+}
+
+::-ms-input-placeholder {
+  color: black;
+}
+
+::placeholder {
+  color: black;
+}
+
+fieldset {
+  margin-bottom: 20px;
+  padding: 0;
+  border-style: none;
+}
+
+fieldset > * {
+  margin-block: 20px;
+  display: block;
+}
+
+fieldset input {
+  width: 95%;
+  padding-block: 7px;
+  line-height: 20px;
+  display: block;
+  border: none;
+  border-bottom: 1.5px solid #1F3E59;
+  background: none;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #1F3E59;
+}
+
+fieldset :focus {
+  border-bottom: 1.5px #ff676f solid;
+}
+
+#submit {
+  width: 40%;
+  background: #4DCFE0;
+}
+
+.add_book {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  bottom: 15px;
+  right: 20px;
+  position: fixed;
+  background: transparent;
+  border: none;
 }

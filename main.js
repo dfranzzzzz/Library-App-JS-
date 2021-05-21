@@ -11,15 +11,28 @@ const booksUnread   = document.querySelector('#books_unread');
 // Button
 // const btnUnread = document.querySelector(`.book_unread`);
 // const btnDone   = document.querySelector(`.book_done`);
+const btnAdd = document.querySelector(`.add_book`);
 
 // Listed Books
 const bookList = document.querySelector(`.listed_books`);
 
+// Form
+const modal = document.querySelector(`.modal`);
+
 window.onload=function(){
   const btnDelete = document.querySelectorAll(`.book_delete`);
-
   // Event Listeners
   btnDelete.forEach(button => button.addEventListener(`click`, Book.deleteBook));
+}
+
+window.onclick = function(e) {
+  if (e.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+btnAdd.onclick = function() {
+  modal.style.display = "flex";
 }
 
 class Book {

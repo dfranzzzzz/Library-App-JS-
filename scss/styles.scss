@@ -5,15 +5,18 @@ $main_font_clr: #1F3E59;
 $secondary_font_clr: #fff;
 
 $col_border_clr: #1F3E59;
-$book_border_clr: lightseagreen;
+$form_line_clr: #1F3E59;
+$form_line_focus_clr: rgb(255, 103, 111);
 
 $main_bg_clr: lightgray;
 $header_bg_clr: #3c74a5;
 $lib_log_bg_clr: rgba(211, 211, 211, 0.308);
+$form_bg_color: #fff;
 
-$btn_done_clr: rgb(37, 204, 196);
-$btn_delete_clr: rgb(231, 89, 96);
+$btn_done_clr: #4DCFE0;
+$btn_delete_clr: rgb(255, 103, 111);
 $btn_border_clr: #1F3E59;
+$btn_submit_clr: #4DCFE0;
 
 body {
   margin: 0;
@@ -33,7 +36,7 @@ img {
   width: 50px;
 }
 
-button {
+button, #submit {
   width: 100px;
   padding: 10px;
   margin: 5px 5px 5px 0;
@@ -43,9 +46,11 @@ button {
   border-radius: 3px;
   transition: transform .2s;
   color: $main_font_clr;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 
-button:hover {
+button:hover, #submit:hover {
   transform: scale(1.05);
 }
 
@@ -148,22 +153,15 @@ main {
 
   &_done {
     background:$btn_done_clr;
-    // color: $secondary_font_clr;
-    font-size: 12px;
-    letter-spacing: 1px;
   }
 
   &_unread {
     background: transparent;
-    font-size: 12px;
-    letter-spacing: 1px;
   }
+    
 
   &_delete {
     background: $btn_delete_clr;
-    // color: $secondary_font_clr;
-    font-size: 12px;
-    letter-spacing: 1px;
   }
 }
 
@@ -193,3 +191,90 @@ main {
 // ===================
 // LISTING FORM
 // ===================
+.modal {
+  display: none;
+  box-sizing: border-box;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+form {
+  background: $form_bg_color;
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 5px $form_line_clr solid;
+}
+
+legend {
+  text-align: center;
+  color: black;
+  font-size: larger;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 10px;
+}
+
+label {
+  font-weight: 700;
+}
+
+::placeholder {
+  color: black;
+}
+
+fieldset {
+  margin-bottom: 20px;
+  padding: 0;
+
+  border-style: none;
+
+  & > * {
+    margin-block: 20px;
+    
+    display: block;
+  }
+  
+
+  input {
+    width: 95%;
+    padding-block: 7px;
+    line-height: 20px;
+
+    display: block;
+    border: none;
+    border-bottom: 1.5px solid $form_line_clr;
+    background: none;
+    outline: none;
+    transition: 0.2s;
+    color: $main_font_clr;
+  }
+
+  :focus {
+    border-bottom: 1.5px $form_line_focus_clr solid;
+  }
+}
+
+#submit {
+  width: 40%;
+  background: $btn_submit_clr;
+}
+
+.add_book {
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+
+  bottom: 15px;
+  right: 20px;
+  position: fixed;
+  background: transparent;
+  border: none;
+}
