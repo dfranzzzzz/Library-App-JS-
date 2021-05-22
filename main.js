@@ -15,25 +15,19 @@ const btnAdd    = document.querySelector(`.add_book`);
 const bookList = document.querySelector(`.listed_books`);
 
 // Form
-const modal = document.querySelector(`.modal`);
-const form = document.querySelector(`.list_form`);
-const form_title = document.querySelector(`#form_title`);
+const modal       = document.querySelector(`.modal`);
+const form        = document.querySelector(`.list_form`);
+const form_title  = document.querySelector(`#form_title`);
 const form_author = document.querySelector(`#form_author`);
-const form_genre = document.querySelector(`#form_genre`);
+const form_genre  = document.querySelector(`#form_genre`);
 const form_status = document.querySelector(`#form_status`);
 
-window.onload = function () {
-  // const btnDone   = document.querySelectorAll(`.book_done`);
-  // const btnUnread = document.querySelectorAll(`.book_unread`);
-  // btnDone.forEach(button => button.addEventListener(`click`, doneToUnread));
-  // btnUnread.forEach(button => button.addEventListener(`click`, unreadToDone));
-
-  
-  
+window.onload = function () {  
   // Event Listeners
-  btnAdd.addEventListener(`click`, showForm);
-  window.addEventListener(`click`, clickExitForm);
-  bookList.addEventListener(`click`, Book.deleteBook);
+  btnAdd  .addEventListener(`click`, showForm);
+  window  .addEventListener(`click`, clickExitForm);
+  bookList.addEventListener(`click`, Book.deleteBook); // event bubbling concept
+  bookList.addEventListener(`click`, Book.toggleStatus); // event bubbling concept
 }
 
 form.addEventListener(`submit`, (e) => {
@@ -59,21 +53,6 @@ resetForm = () => {
   form.reset();
 }
 
-
-// doneToUnread = (e) => {
-//   e.target.classList.remove(`book_done`);
-//   e.target.classList.add(`book_unread`);
-//   e.target.innerText = `UNREAD`;
-//   alert("asdfas")
-// }
-
-// unreadToDone = (e) => {
-//   e.target.classList.remove(`book_unread`);
-//   e.target.classList.add(`book_done`);
-//   e.target.innerText = `DONE`;
-//   console.log(e);
-// }
-
 class Book {
   constructor (title, author, genre, status) {
     this.title  = title;
@@ -82,13 +61,6 @@ class Book {
     this.status = status;
     Book.allBooks.push(this);
     this.createBook();
-  }
-
-  getSummary() {
-    console.log(this.title);
-    console.log(this.author);
-    console.log(this.genre);
-    console.log(this.status);
   }
 
   createBook () {
@@ -121,17 +93,50 @@ class Book {
     book.append(deleteBtn);
   }
 
+  // event bubbling
+  static toggleStatus (e) {
+    // if status is DONE
+    if (e.target.className == 'book_done') {
+      const book  = e.target.parentElement;
+      const title = `${book.childNodes[0].innerText}`;
+      Book.allBooks.map(objInstance => objInstance.title === `${title}` ? 
+        objInstance.status = `UNREAD`: objInstance
+      )
+      e.target.classList.remove(`book_done`);
+      e.target.classList.add(`book_unread`)
+      e.target.innerText = `UNREAD`;
+      console.log(Book.allBooks);
+      console.log(e.target.className);
+      return;
+    }
+    // if status is UNREAD
+    if (e.target.className == 'book_unread') {
+      const book  = e.target.parentElement;
+      const title = `${book.childNodes[0].innerText}`;
+      Book.allBooks.map(objInstance => objInstance.title === `${title}` ? 
+        objInstance.status = `DONE`: objInstance
+      )
+      e.target.classList.remove(`book_unread`);
+      e.target.classList.add(`book_done`);
+      e.target.innerText = `DONE`;
+      console.log(Book.allBooks);
+      console.log(e.target.className);
+      return;
+    }
+  }
+
+  // event bubbling concept
   static deleteBook (e) {
-    // event bubbling
-    if(e.target.className == 'book_delete') {
-      const book = e.target.parentElement;
-      const title = `${e.target.parentElement.childNodes[0].innerText}`; 
+    if (e.target.className == 'book_delete') {
+      const book  = e.target.parentElement;
+      const title = `${book.childNodes[0].innerText}`; 
       const index = Book.allBooks.findIndex(x => x.title === title);
       bookList.removeChild(book);
       Book.allBooks.splice(index, 1);
     }
   }
 
+  // class instance object array
   static allBooks = [];
 }
 
