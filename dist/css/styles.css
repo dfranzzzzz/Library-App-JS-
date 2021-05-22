@@ -80,14 +80,21 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: rgba(211, 211, 211, 0.308);
   border-radius: 5px;
 }
 
-.lib_log h4 {
+.lib_log p {
   margin-block: 5px;
   font-size: 1rem;
 }

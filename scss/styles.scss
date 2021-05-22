@@ -90,11 +90,13 @@ header {
   min-width: 300px;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   background: $lib_log_bg_clr;
   border-radius: 5px;
 
-  h4 {
+  p {
     margin-block: 5px;
     font-size: 1rem;
   }
